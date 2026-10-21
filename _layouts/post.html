@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<article class="wrap narrow section">
+  <header class="page-head">
+    <p class="kicker"><a href="{{ '/news/' | relative_url }}">News</a></p>
+    <h1>{{ page.title }}</h1>
+    <p class="muted">Posted <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.author %} by {{ page.author }}{% endif %}</p>
+  </header>
+
+  {% if page.event_date %}
+  <aside class="event-box" aria-label="Event details">
+    <dl>
+      <div><dt>When</dt><dd><time datetime="{{ page.event_date | date_to_xmlschema }}">{{ page.event_date | date: "%A, %B %-d, %Y at %-I:%M %p" }}</time></dd></div>
+      {% if page.location %}<div><dt>Where</dt><dd>{{ page.location }}</dd></div>{% endif %}
+      {% if page.presenter %}<div><dt>Who</dt><dd>{{ page.presenter }}</dd></div>{% endif %}
+      {% if page.rsvp %}<div><dt>RSVP</dt><dd><a href="{{ page.rsvp }}">Sign up</a></dd></div>{% endif %}
+    </dl>
+  </aside>
+  {% endif %}
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  <nav class="pager" aria-label="More news">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+    {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }} &rarr;</a>{% endif %}
+  </nav>
+</article>

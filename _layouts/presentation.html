@@ -1,0 +1,69 @@
+---
+layout: default
+---
+{% comment %}
+  `slides` can be:
+    - a PDF in this repo, e.g. /assets/slides/2026-10-14-memory-forensics.pdf
+    - a Google Slides "Publish to web" embed URL (…/pub?start=false or …/embed)
+    - any other link (shown as a button, not embedded)
+{% endcomment %}
+{% assign slides = page.slides %}
+{% assign is_pdf = false %}
+{% assign is_embed = false %}
+{% if slides %}
+  {% assign lower = slides | downcase %}
+  {% if lower contains ".pdf" %}{% assign is_pdf = true %}
+  {% elsif lower contains "docs.google.com/presentation" %}{% assign is_embed = true %}
+  {% endif %}
+  {% if slides contains "://" %}{% assign slides_url = slides %}{% else %}{% assign slides_url = slides | relative_url %}{% endif %}
+  {% if is_embed %}{% assign embed_url = slides_url | replace: "/pub?", "/embed?" | replace: "/edit", "/embed" %}{% endif %}
+{% endif %}
+
+<article class="wrap section">
+  <header class="page-head narrow">
+    <p class="kicker"><a href="{{ '/presentations/' | relative_url }}">Presentations</a></p>
+    <h1>{{ page.title }}</h1>
+    <p class="muted">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      {% if page.presenter %} &middot; Presented by {{ page.presenter }}{% endif %}
+    </p>
+    {% if page.tags.size > 0 %}
+      <p class="tags">{% for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor %}</p>
+    {% endif %}
+  </header>
+
+  {% if slides %}
+    <div class="slides">
+      {% if is_pdf %}
+        <object data="{{ slides_url }}" type="application/pdf" aria-label="Slides for {{ page.title }}">
+          <p class="slides-fallback">Your browser can't show the PDF inline. <a href="{{ slides_url }}">Open the slides</a>.</p>
+        </object>
+      {% elsif is_embed %}
+        <iframe src="{{ embed_url }}" title="Slides for {{ page.title }}" allowfullscreen loading="lazy"></iframe>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="resource-bar narrow">
+    {% if slides %}<a class="btn" href="{{ slides_url }}"{% if is_pdf %} download{% endif %}>{% if is_pdf %}Download slides (PDF){% else %}Open slides{% endif %}</a>{% endif %}
+    {% if page.recording %}<a class="btn" href="{{ page.recording }}">Watch recording</a>{% endif %}
+    {% if page.materials %}<a class="btn" href="{{ page.materials | relative_url }}">Lab files</a>{% endif %}
+  </div>
+
+  <div class="prose narrow">
+    {{ content }}
+  </div>
+
+  {% assign all = site.presentations | sort: "date" %}
+  {% for p in all %}
+    {% if p.url == page.url %}
+      {% assign i = forloop.index0 %}
+      {% assign prev_i = i | minus: 1 %}
+      {% assign next_i = i | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+  <nav class="pager narrow" aria-label="More presentations">
+    {% if prev_i >= 0 %}{% assign pv = all[prev_i] %}<a href="{{ pv.url | relative_url }}">&larr; {{ pv.title }}</a>{% else %}<span></span>{% endif %}
+    {% assign nx = all[next_i] %}{% if nx %}<a href="{{ nx.url | relative_url }}">{{ nx.title }} &rarr;</a>{% endif %}
+  </nav>
+</article>

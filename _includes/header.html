@@ -1,0 +1,23 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <span class="brand-mark" aria-hidden="true">{{ site.short_title }}</span>
+      <span class="brand-text">
+        <span class="brand-title">{{ site.title }}</span>
+        <span class="brand-tag">{{ site.tagline }}</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      {% for item in site.data.navigation %}
+        {% assign item_url = item.url | relative_url %}
+        {% assign current = false %}
+        {% if item.url == '/' %}
+          {% if page.url == '/' %}{% assign current = true %}{% endif %}
+        {% elsif page.url contains item.url %}
+          {% assign current = true %}
+        {% endif %}
+        <a href="{{ item_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>
