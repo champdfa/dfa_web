@@ -14,13 +14,13 @@ The Digital Forensics Association is a student-run club at Champlain College for
 
 ## Getting involved
 
-Just show up! We meet {{ site.club.meeting_day }} at {{ site.club.meeting_time }} in {{ site.club.meeting_location }}. Want to give a talk? Email [{{ site.club.email }}](mailto:{{ site.club.email }}) and we'll get you on the schedule.
+Just show up! We meet {{ site.club.meeting_day }} at {{ site.club.meeting_time }} in {{ site.club.meeting_location }}.   Want to give a talk? Email [{{ site.club.email }}](mailto:{{ site.club.email }}) and we'll get you on the schedule.
 
 ## Officers
 
-| Role | Name |
-|---|---|
-| President | Colin Yeager |
-| Vice President | Jeff |
-| Treasurer | Riley |
-| Secretary | Matthew Yanez |
+| Role | Name | Email |
+|---|---|---|
+| President | Colin Yeager | colin.yeager@mymail.champlain.edu |
+| Vice President | Jeff Hill | jeffery.hill@mymail.champlain.edu |
+| Treasurer | Riley Pitchard | riley.pitchard@mymail.champlain.edu |
+| Secretary | Mathew Yanez | mathew.yanez@mymail.champlain.edu |
