@@ -20,7 +20,7 @@ Just show up! We meet {{ site.club.meeting_day }} at {{ site.club.meeting_time }
 
 | Role | Name |
 |---|---|
-| President | Your name here |
-| Vice President | Your name here |
-| Treasurer | Your name here |
-| Secretary | Your name here |
+| President | Colin Yeager |
+| Vice President | Jeff |
+| Treasurer | Riley |
+| Secretary | Matthew Yanez |
