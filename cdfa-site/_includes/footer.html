@@ -1,0 +1,16 @@
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-title">{{ site.title }}</p>
+      <p class="muted">{{ site.tagline }} &middot; Meets {{ site.club.meeting_day }} at {{ site.club.meeting_time }}, {{ site.club.meeting_location }}</p>
+    </div>
+    <ul class="footer-links">
+      {% if site.club.email != "" %}<li><a href="mailto:{{ site.club.email }}">Email</a></li>{% endif %}
+      {% if site.club.discord != "" %}<li><a href="{{ site.club.discord }}">Discord</a></li>{% endif %}
+      {% if site.club.instagram != "" %}<li><a href="{{ site.club.instagram }}">Instagram</a></li>{% endif %}
+      {% if site.club.linkedin != "" %}<li><a href="{{ site.club.linkedin }}">LinkedIn</a></li>{% endif %}
+      {% if site.club.github != "" %}<li><a href="{{ site.club.github }}">GitHub</a></li>{% endif %}
+      <li><a href="{{ '/feed.xml' | relative_url }}">RSS</a></li>
+    </ul>
+  </div>
+</footer>

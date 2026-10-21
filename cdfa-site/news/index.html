@@ -1,0 +1,34 @@
+---
+layout: page
+title: News & Events
+intro: Announcements, upcoming meetings, competitions and anything else the club is up to.
+---
+{% assign now_ts = site.time | date: "%s" | plus: 0 %}
+{% assign event_posts = site.posts | where_exp: "p", "p.event_date" | sort: "event_date" %}
+
+<h2>Upcoming</h2>
+{% assign shown = 0 %}
+<div class="card-list">
+  {% for p in event_posts %}
+    {% assign ev = p.event_date | date: "%s" | plus: 0 %}
+    {% if ev >= now_ts %}
+      {% include event-card.html post=p %}
+      {% assign shown = shown | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+</div>
+{% if shown == 0 %}<p class="empty">Nothing scheduled yet.</p>{% endif %}
+
+<h2>All posts</h2>
+{% assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+{% for year in by_year %}
+  <h3 class="year">{{ year.name }}</h3>
+  <ul class="link-list">
+    {% for p in year.items %}
+      <li>
+        <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%b %-d" }}</time>
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}
