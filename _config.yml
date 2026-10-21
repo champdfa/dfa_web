@@ -18,11 +18,11 @@ lang: en-US
 
 # Club details shown on the home page and footer
 club:
-  meeting_day: Wednesdays
+  meeting_day: Alternating Wednesdays
   meeting_time: 7:00 PM
-  meeting_location: Room TBD
-  email: dfa@example.com
-  discord: ""      # e.g. https://discord.gg/xxxxxx
+  meeting_location: Ireland 117
+  email: dfa@champlain.edu
+  discord: "https://discord.gg/KuHXwNxp6m"      # e.g. https://discord.gg/xxxxxx
   instagram: ""    # e.g. https://instagram.com/yourclub
   linkedin: ""
   github: ""
